@@ -1,0 +1,70 @@
+import sys
+
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QPlainTextEdit
+from PyQt5.QtWidgets import QLabel, QLineEdit, QLCDNumber, QCheckBox
+from PyQt5.QtCore import Qt
+
+
+class Example(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+        self.count = 0
+
+    def initUI(self):
+        self.setGeometry(500, 300, 500, 400)
+        self.setWindowTitle('Прятки для ')
+        self.pole = QPlainTextEdit()
+        self.pole.resize(200, 120)
+        self.pole.move(50, 170)
+        self.pole.setPlainText('Dкобочках')
+        self.box = QCheckBox('edit 1', self)
+        self.box.setCheckable(True)
+        self.box.move(50, 50)
+        self.box.toggle()
+        self.box.stateChanged.connect(self.push_box)
+        self.box2 = QCheckBox('edit 2', self)
+        self.box2.setCheckable(True)
+        self.box2.move(50, 75)
+        self.box2.toggle()
+        self.box2.stateChanged.connect(self.push_box)
+        self.box3 = QCheckBox('edit 3', self)
+        self.box3.setCheckable(True)
+        self.box3.move(50, 100)
+        self.box3.toggle()
+        self.box3.stateChanged.connect(self.push_box)
+        self.box4 = QCheckBox('edit 4', self)
+        self.box4.setCheckable(True)
+        self.box4.move(50, 125)
+        self.box4.toggle()
+        self.box4.stateChanged.connect(self.push_box)
+
+    def push_box(self, state):
+        name = self.sender().text()
+        if name == 'edit 1':
+            if state:
+                self.name_input.show()
+            else:
+                self.name_input.hide()
+        if name == 'edit 2':
+            if state:
+                self.name_input1.show()
+            else:
+                self.name_input1.hide()
+        if name == 'edit 3':
+            if state:
+                self.name_input_2.show()
+            else:
+                self.name_input_2.hide()
+        if name == 'edit 4':
+            if state:
+                self.name_input_3.show()
+            else:
+                self.name_input_3.hide()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Example()
+    ex.show()
+    sys.exit(app.exec())
